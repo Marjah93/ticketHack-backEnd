@@ -1,25 +1,10 @@
-// Create trips collection and models database mongoose to save trip data and export
-
 const mongoose = require("mongoose");
 
-const tripSchema = new mongoose.Schema({
-  cityName: {
-    type: String,
-  },
-  main: {
-    type: String,
-  },
-  description: {
-    type: String,
-  },
-  tempMin: {
-    type: Number,
-  },
-  tempMax: {
-    type: Number,
-  },
+const tripsSchema = mongoose.Schema({
+  departure: String,
+  arrival: String,
 });
 
-const Trip = mongoose.model("Trip", tripSchema);
+const Trip = mongoose.model("trips", tripsSchema);
 
 module.exports = Trip;
