@@ -1,3 +1,4 @@
+require('dotenv').config();
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
@@ -7,6 +8,7 @@ var indexRouter = require("./routes/index");
 var tripsRouter = require("./routes/trips");
 
 require("./models/connection");
+
 
 var app = express();
 
