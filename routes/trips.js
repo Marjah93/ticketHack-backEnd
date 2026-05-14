@@ -21,10 +21,20 @@ router.get("/", (req, res) => {
     });
 });
 
-/* GET /trips/search - search trips with params */
+// GET - Retrieve trips by departure and arrival city
+router.get("/search", (req, res) => {
+  const { departure, arrival } = req.query;
 
-// trips/search
-
-// TODO : implement search functionality with query parameters (e.g., departure, arrival)
+  Trip.find({
+    departure: { $regex: new RegExp(`^${departure}$`, "i") },
+    arrival: { $regex: new RegExp(`^${arrival}$`, "i") },
+  }).then((trips) => {
+    if (trips.length > 0) {
+      res.json({ success: true, data: trips });
+    } else {
+      res.json({ success: false, error: "No trips found" });
+    }
+  });
+});
 
 module.exports = router;
